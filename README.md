@@ -1,4 +1,4 @@
-# SafeSide
+# Safety Net
 ## Description
 Safety Net is a web application developed in light of the growing need for healthcare, but lack of affordable access to it or simply reluctance to go to a doctor. 
 
@@ -92,4 +92,5 @@ SafeSide/
 └── requirements.txt
 ```
 
-## File Descriptions
+## Contributors
+This project was created jointly by Seiya Muterja and Neel Mehta
