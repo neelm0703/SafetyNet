@@ -11,12 +11,12 @@ Safety Net provides you with the most likely conditions based on the symptoms yo
 
    - In your terminal, navigate to where you would like to create the project folder and clone the respository using the following command
         ```bash
-        git clone https://github.com/neelm0703/Safety-Net.git 
+        git clone https://github.com/neelm0703/SafetyNet.git 
         ```
 
    - Navigate into the repository
         ```bash
-        cd Safety-Net
+        cd SafetyNet
         ```
 
    - (Optional but recommended) Create a virtual environment and activate it by running the command
