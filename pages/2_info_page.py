@@ -42,6 +42,7 @@ if st.button("", icon = "🔙"):
 
 # Function to retrieve nearby doctors from the API
 def doctors_nearby(query, location):
+    st.write(location)
     params = {
         "query" : query,
         "location" : location,
