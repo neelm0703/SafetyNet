@@ -44,7 +44,7 @@ if st.button("", icon = "🔙"):
 def doctors_nearby(query, location):
     st.write(location)
     params = {
-        "query" : "doctors",
+        "query" : query,
         "location" : location,
         "radius": 5000,
         "key" : key
