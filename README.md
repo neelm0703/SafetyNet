@@ -93,4 +93,4 @@ SafeSide/
 ```
 
 ## Contributors
-This project was created jointly by Seiya Muterja and Neel Mehta
+This project was created jointly by Seiya Mutreja and Neel Mehta
