@@ -42,7 +42,6 @@ if st.button("", icon = "🔙"):
 
 # Function to retrieve nearby doctors from the API
 def doctors_nearby(query, location):
-    st.write(location)
     params = {
         "query" : query,
         "location" : location,
@@ -53,8 +52,6 @@ def doctors_nearby(query, location):
         res = requests.get(endpoint, params=params)
         res.raise_for_status()
         data = res.json()
-
-        st.write(data)
 
         if data["status"] == "OK":
             places = []
