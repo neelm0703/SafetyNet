@@ -42,6 +42,9 @@ if st.button("", icon = "🔙"):
 
 # Function to retrieve nearby doctors from the API
 def doctors_nearby(query, location):
+    headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/113.0.0.0 Safari/537.36"
+    }
     params = {
         "query" : query,
         "location" : location,
@@ -49,7 +52,7 @@ def doctors_nearby(query, location):
         "key" : key
     }
     try:
-        res = requests.get(endpoint, params=params)
+        res = requests.get(endpoint, params=params, headers=headers)
         res.raise_for_status()
         st.write("Debuging")
         st.write(res.url)
