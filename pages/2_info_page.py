@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import pydeck as pdk
 from streamlit_geolocation import streamlit_geolocation
+import json
 
 # Button styling for every button on the page. Has to be done on every page
 st.markdown("""
@@ -56,8 +57,10 @@ def doctors_nearby(query, location):
         res.raise_for_status()
         st.write("Debuging")
         st.write(res.url)
-        data = res.json()
+        # data = res.json()
+        data = json.loads(requests.get(res.url).text)
         st.json(data)
+        st.write("Debugging done")
 
         if data["status"] == "OK":
             places = []
