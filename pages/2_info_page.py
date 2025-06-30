@@ -53,6 +53,8 @@ def doctors_nearby(query, location):
         res.raise_for_status()
         data = res.json()
 
+        st.write(data)
+
         if data["status"] == "OK":
             places = []
             for place in data.get("results", []):
