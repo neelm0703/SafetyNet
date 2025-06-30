@@ -13,7 +13,15 @@ st.logo("assets/logo.png", size="large")
 co1, co2, co3, co4, co5 = st.columns(5)
 co3.image("assets/emblem.png")
 st.markdown(
-    f'<span style="font-size:20px;">*{"Safety Net is an AI driven symptom diagnosis platform where you enter symptoms and we will give you a list of possible conditions and specialists near you."}*</span>',
+    f'''
+    <div style="text-align:center;">
+        <span style="font-size:20px;">
+            <em>
+                Safety Net is an AI driven symptom diagnosis platform where you enter symptoms and we will give you a list of possible conditions and specialists near you.
+            </em>
+        </span>
+    </div>
+    ''',
     unsafe_allow_html=True
 )
 
