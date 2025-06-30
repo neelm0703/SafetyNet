@@ -46,6 +46,7 @@ def doctors_nearby(query, location):
     params = {
         "query" : "doctors",
         "location" : location,
+        "radius": 5000,
         "key" : key
     }
     try:
