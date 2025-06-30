@@ -26,7 +26,8 @@ st.markdown("""
 
 
 # Variables for the API
-endpoint = "https://maps.googleapis.com/maps/api/place/textsearch/json"
+endpoint = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
+# endpoint = "https://maps.googleapis.com/maps/api/place/textsearch/json"
 key = st.secrets["api_keys"]["maps_key"]
 
 st.set_page_config(layout="wide")
