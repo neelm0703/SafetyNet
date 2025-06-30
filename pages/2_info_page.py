@@ -114,10 +114,11 @@ def create_map(column):
     # Getting information from API and creating map if they gave information
     if (location['latitude'] and location['longitude']):
         st.session_state['location'] = location
-        col2.write("Specialists Nearby:")
         df = doctors_nearby("doctor for " + st.session_state["selected_disease"], location)
         if (not df):
             return None
+
+        col2.write("Specialists Nearby:")
             
         df = df.dropna(subset = ['Latitude', 'Longitude'])
         # Adding a distance column relative to current location
