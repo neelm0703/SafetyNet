@@ -118,6 +118,7 @@ def create_map(column):
         df = doctors_nearby("doctor for " + st.session_state["selected_disease"], location)
 
         if (df == None):
+            column.write("Sorry! We were unable to find specialists near your location.")
             return None
             
         df = df.dropna(subset = ['Latitude', 'Longitude'])
