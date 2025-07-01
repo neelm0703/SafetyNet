@@ -49,6 +49,16 @@ def doctors_nearby(query, location):
         "key" : key
     }
 
+    # --- CRITICAL DEBUGGING LINES (New Additions) ---
+    req = requests.Request('GET', PLACES_API_ENDPOINT, params=params)
+    prepared_req = req.prepare()
+    st.subheader("Full URL being sent:")
+    st.write(prepared_req.url) # Display the full URL in Streamlit
+    print("\n--- Full URL being sent (Console Output) ---")
+    print(prepared_req.url)
+    print("-------------------------------------------\n")
+    # --- END CRITICAL DEBUGGING LINES ---
+    
     # --- CRITICAL DEBUGGING LINES ---
     st.subheader("Parameters being sent:")
     st.json(params) # Display the parameters in Streamlit
