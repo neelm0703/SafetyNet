@@ -55,12 +55,6 @@ def doctors_nearby(query, location):
         res.raise_for_status()
         data = res.json()
 
-        st.subheader("Raw API Response (Local Debugging):")
-        st.json(data)
-        print("\n--- Full API Response (Local) ---")
-        print(json.dumps(data, indent=2))
-        print("---------------------------------\n")
-
         if data["status"] == "OK":
             places = []
             for place in data.get("results", []):
