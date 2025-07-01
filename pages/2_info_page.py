@@ -50,7 +50,7 @@ def doctors_nearby(query, location):
     }
 
     # --- CRITICAL DEBUGGING LINES (New Additions) ---
-    req = requests.Request('GET', PLACES_API_ENDPOINT, params=params)
+    req = requests.Request('GET', endpoint, params=params)
     prepared_req = req.prepare()
     st.subheader("Full URL being sent:")
     st.write(prepared_req.url) # Display the full URL in Streamlit
