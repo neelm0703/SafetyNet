@@ -69,11 +69,8 @@ def doctors_nearby(query, location):
             return pd.DataFrame(places)
         elif data["status"] == "ZERO_RESULTS":
             st.warning("No results found!")
-            return pd.DataFrame()
         else:
             st.error("Error with API")
-            st.write("Raw API response:", data)
-            return pd.DataFrame()
     except Exception as e:
         st.error(f"An unexpected error occurred: {e}")
 
@@ -115,7 +112,12 @@ def create_map(column):
     if (location['latitude'] and location['longitude']):
         st.session_state['location'] = location
         col2.write("Specialists Nearby:")
-        df = doctors_nearby("doctor for " + st.session_state["selected_disease"], location).dropna(subset = ['Latitude', 'Longitude'])
+        df = doctors_nearby("doctor for " + st.session_state["selected_disease"], location)
+
+        if (not df):
+            return
+            
+        df = df.dropna(subset = ['Latitude', 'Longitude'])
         # Adding a distance column relative to current location
         df["Distance (KM)"] = distance_between_coords(location['latitude'], location['longitude'], df["Latitude"], df["Longitude"])
         # Removing doctors which are further than 10km away
