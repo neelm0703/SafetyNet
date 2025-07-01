@@ -59,7 +59,7 @@ def doctors_nearby(query, location):
         #st.write(res.url)
          data = res.json()
         #st.json(data)
-        st.write("Debugging done")
+        #st.write("Debugging done")
 
         if data["status"] == "OK":
             places = []
