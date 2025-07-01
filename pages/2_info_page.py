@@ -115,7 +115,7 @@ def create_map(column):
         df = doctors_nearby("doctor for " + st.session_state["selected_disease"], location)
 
         if (not df):
-            return
+            return None
             
         df = df.dropna(subset = ['Latitude', 'Longitude'])
         # Adding a distance column relative to current location
