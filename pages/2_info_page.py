@@ -117,7 +117,7 @@ def create_map(column):
         col2.write("Specialists Nearby:")
         df = doctors_nearby("doctor for " + st.session_state["selected_disease"], location)
 
-        if (df == None):
+        if (not isinstance(df, pd.DataFrame)):
             column.write("Sorry! We were unable to find specialists near your location.")
             return None
             
