@@ -68,7 +68,7 @@ def doctors_nearby(query, location):
                 })
             return pd.DataFrame(places)
         elif data["status"] == "ZERO_RESULTS":
-            st.warning("No results found!")
+            col2.warning("No results found!")
         else:
             st.error("Error with API")
     except Exception as e:
