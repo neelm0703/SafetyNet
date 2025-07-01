@@ -216,3 +216,5 @@ if "selected_disease" in st.session_state:
     # COL 2
     #Specialists near them
     create_map(col2)
+else:
+    st.error("Please input your symtoms and select a disease to see it's details")
