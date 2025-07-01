@@ -45,27 +45,11 @@ if st.button("", icon = "🔙"):
 def doctors_nearby(query, location):
     params = {
         "query" : query,
-        "location" : location,
+        "location" : f"{location['latitude']},{location['longitude']}",
         "key" : key
     }
 
-    # --- CRITICAL DEBUGGING LINES (New Additions) ---
-    req = requests.Request('GET', endpoint, params=params)
-    prepared_req = req.prepare()
-    st.subheader("Full URL being sent:")
-    st.write(prepared_req.url) # Display the full URL in Streamlit
-    print("\n--- Full URL being sent (Console Output) ---")
-    print(prepared_req.url)
-    print("-------------------------------------------\n")
-    # --- END CRITICAL DEBUGGING LINES ---
-    
-    # --- CRITICAL DEBUGGING LINES ---
-    st.subheader("Parameters being sent:")
-    st.json(params) # Display the parameters in Streamlit
-    print("\n--- Parameters being sent (Console Output) ---")
-    print(json.dumps(params, indent=2))
-    print("--------------------------------------------\n")
-    # --- END CRITICAL DEBUGGING LINES ---
+
     try:
         res = requests.get(endpoint, params=params)
         res.raise_for_status()
