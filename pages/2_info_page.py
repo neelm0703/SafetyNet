@@ -3,8 +3,8 @@ import requests
 import pandas as pd
 import numpy as np
 import pydeck as pdk
-from streamlit_geolocation import streamlit_geolocation
 import json
+from streamlit_geolocation import streamlit_geolocation
 
 # Button styling for every button on the page. Has to be done on every page
 st.markdown("""
@@ -43,32 +43,15 @@ if st.button("", icon = "🔙"):
 
 # Function to retrieve nearby doctors from the API
 def doctors_nearby(query, location):
-    headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/113.0.0.0 Safari/537.36"
-    }
     params = {
         "query" : query,
         "location" : location,
-        "radius": 5000,
         "key" : key
     }
-
-    # --- CRITICAL DEBUGGING LINES ---
-    st.subheader("Parameters being sent:")
-    st.json(params) # Display the parameters in Streamlit
-    print("\n--- Parameters being sent (Console Output) ---")
-    print(json.dumps(params, indent=2))
-    print("--------------------------------------------\n")
-    # --- END CRITICAL DEBUGGING LINES ---
-    
     try:
-        res = requests.get(endpoint, params=params, headers=headers)
+        res = requests.get(endpoint, params=params)
         res.raise_for_status()
-        #st.write("Debuging")
-        #st.write(res.url)
         data = res.json()
-        #st.json(data)
-        #st.write("Debugging done")
 
         st.subheader("Raw API Response (Local Debugging):")
         st.json(data)
@@ -89,7 +72,8 @@ def doctors_nearby(query, location):
                 })
             return pd.DataFrame(places)
         elif data["status"] == "ZERO_RESULTS":
-            col2.error("There was a problem while retrieving results. Please try again later.")
+            st.warning("No results found!")
+            return pd.DataFrame()
         else:
             st.error("Error with API")
             st.write("Raw API response:", data)
@@ -134,13 +118,8 @@ def create_map(column):
     # Getting information from API and creating map if they gave information
     if (location['latitude'] and location['longitude']):
         st.session_state['location'] = location
-        df = doctors_nearby("doctor for " + st.session_state["selected_disease"], location)
-        if (not df):
-            return None
-
         col2.write("Specialists Nearby:")
-            
-        df = df.dropna(subset = ['Latitude', 'Longitude'])
+        df = doctors_nearby("doctor for " + st.session_state["selected_disease"], location).dropna(subset = ['Latitude', 'Longitude'])
         # Adding a distance column relative to current location
         df["Distance (KM)"] = distance_between_coords(location['latitude'], location['longitude'], df["Latitude"], df["Longitude"])
         # Removing doctors which are further than 10km away
@@ -239,5 +218,3 @@ if "selected_disease" in st.session_state:
     # COL 2
     #Specialists near them
     create_map(col2)
-else:
-  st.error("Please input your symptoms and select a disease to see it's details.")
