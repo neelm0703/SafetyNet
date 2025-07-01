@@ -57,7 +57,7 @@ def doctors_nearby(query, location):
         res.raise_for_status()
         #st.write("Debuging")
         #st.write(res.url)
-         data = res.json()
+        data = res.json()
         #st.json(data)
         #st.write("Debugging done")
 
