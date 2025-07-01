@@ -69,10 +69,13 @@ def doctors_nearby(query, location):
             return pd.DataFrame(places)
         elif data["status"] == "ZERO_RESULTS":
             col2.warning("No results found!")
+            return None
         else:
             st.error("Error with API")
+            return None
     except Exception as e:
         st.error(f"An unexpected error occurred: {e}")
+        return None
 
 
 
@@ -114,7 +117,7 @@ def create_map(column):
         col2.write("Specialists Nearby:")
         df = doctors_nearby("doctor for " + st.session_state["selected_disease"], location)
 
-        if (not df):
+        if (df == None):
             return None
             
         df = df.dropna(subset = ['Latitude', 'Longitude'])
