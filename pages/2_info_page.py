@@ -55,11 +55,10 @@ def doctors_nearby(query, location):
     try:
         res = requests.get(endpoint, params=params, headers=headers)
         res.raise_for_status()
-        st.write("Debuging")
-        st.write(res.url)
-        # data = res.json()
-        data = json.loads(requests.get(res.url).text)
-        st.json(data)
+        #st.write("Debuging")
+        #st.write(res.url)
+         data = res.json()
+        #st.json(data)
         st.write("Debugging done")
 
         if data["status"] == "OK":
