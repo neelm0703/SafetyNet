@@ -48,6 +48,14 @@ def doctors_nearby(query, location):
         "location" : location,
         "key" : key
     }
+
+    # --- CRITICAL DEBUGGING LINES ---
+    st.subheader("Parameters being sent:")
+    st.json(params) # Display the parameters in Streamlit
+    print("\n--- Parameters being sent (Console Output) ---")
+    print(json.dumps(params, indent=2))
+    print("--------------------------------------------\n")
+    # --- END CRITICAL DEBUGGING LINES ---
     try:
         res = requests.get(endpoint, params=params)
         res.raise_for_status()
